@@ -18,7 +18,7 @@
 ### 主な利用シーン
 <自分が行った地元のお勧めスポットの口コミを投稿する時、旅行予定先の口コミを検索する時>
 
-##実装機能リスト
+## 実装機能リスト
 <https://docs.google.com/spreadsheets/d/1e1u6i48fq3Unf0xFEoVv7L3rUTI0_vhei1Dq_J9oma0/edit#gid=1091086188>
 
 ## 設計書
