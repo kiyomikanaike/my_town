@@ -1,0 +1,33 @@
+<div class="container">
+ <div class="row">
+  <div class="mx-auto">
+
+   <h5 class="mt-4 mb-4">マイページ編集</h5>
+
+    <%= form_with model: @member,url: members_information_path do |f| %>
+     <table>
+       <tr>
+        <td>居住地</td>
+        <td><%= f.text_field :residence, autofocus: true %></td>
+       </tr>
+
+       <tr>
+        <td>生年月日</td>
+        <td><%= f.text_field :birth_date %></td>
+       </tr>
+
+       <tr>
+        <td>パスワード</td>
+        <td><%#= f.text_field :encrypted_password %></td>
+       </tr>
+
+       <tr>
+       <td><%= f.submit "編集内容を保存",class: 'btn btn-success' %></td>
+       </tr>
+
+     </table>
+    <% end %>
+
+  </div>
+ </div>
+</div>

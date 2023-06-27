@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2023_06_20_112138) do
   create_table "posts", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.integer "member_id", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 2023_06_20_112138) do
     t.string "spot_postal_code", null: false
     t.string "spot_address", null: false
     t.string "point", null: false
+    t.string "images", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_posts_on_email", unique: true

@@ -1,0 +1,51 @@
+<div class="container">
+ <div class="row">
+  <div class="mx-auto">
+
+   <div class="text-center p-5">
+   <h5>新規投稿</h5>
+   </div>
+
+    <%= form_with model: @post do |f| %>
+     <table>
+
+      <tr>
+       <td><%= f.label "都道府県" %></td>
+       <td><%= f.select :prefectures, ['北海道', '青森県', '秋田県', '岩手県','山形県','宮城県','福島県','新潟県','富山県','石川県','福井県','長野県','群馬県','栃木県','茨城県','千葉県','埼玉県','東京都','神奈川県','山梨県','静岡県','愛知県','岐阜県','三重県','滋賀県','京都府','大阪府','奈良県','和歌山県','兵庫県','鳥取県','島根県','岡山県','広島県','山口県','香川県','徳島県','高知県','愛媛県','福岡県','大分県','宮崎県','熊本県','鹿児島県','佐賀県','長崎県','沖縄県'], { include_blank: '選択してください' } %></td>
+      </tr>
+
+      <tr>
+       <td><%= f.label "スポット名" %></td>
+       <td><%= f.text_field :spot_name %></td>
+      </tr>
+
+       <tr>
+        <th><%= f.label "写真" %></th>
+        <td><%= f.file_field :images, multiple: true %></td>
+       </tr>
+
+       <tr>
+        <td><%= f.label "郵便番号" %></td>
+        <td><%= f.text_field :spot_postal_code %></td>
+       </tr>
+
+       <tr>
+        <td><%= f.label "住所" %></td>
+        <td><%= f.text_field :spot_address %></td>
+       </tr>
+
+       <tr>
+        <td><%= f.label "おすすめポイント" %></td>
+        <td><%= f.text_area :point %></td>
+       </tr>
+
+
+       <tr>
+        <td><%= f.submit "投稿",class: 'btn btn-success' %></td>
+       </tr>
+      </table>
+    <% end %>
+
+  </div>
+ </div>
+</div>

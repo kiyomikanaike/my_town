@@ -1,0 +1,26 @@
+<div class="container">
+ <div class="row">
+  <div class="mx-auto">
+
+   <h4>投稿詳細</h4>
+    <table>
+     <tr>
+      <td><%#= image_tag @post.images,size:"200x200" %></td>
+     </tr>
+     <tr>
+      <td><%= @post.prefectures %></td><td><%= @post.spot_name %></td>
+     </tr>
+     <tr>
+      <td><%= @post.spot_postal_code %></td><td><%= @post.spot_address %></td>
+     </tr>
+     <tr>
+      <td><%= @post.spot_point %></td>
+     </tr>
+     <tr>
+      <td><%= @post.member.residence %></td><td><%= @post.member.age %></td>
+     </tr>
+    </table>
+
+  </div>
+ </div>
+</div>

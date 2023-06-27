@@ -6,6 +6,7 @@ class DeviseCreatePosts < ActiveRecord::Migration[6.1]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.integer :member_id, null: false
 
       ## Recoverable
       t.string   :reset_password_token
@@ -19,6 +20,7 @@ class DeviseCreatePosts < ActiveRecord::Migration[6.1]
       t.string :spot_postal_code,null: false #スポット郵便番号
       t.string :spot_address,null: false #スポット住所
       t.string :point,null: false #オススメポイント
+      t.string :images,null: false #画像
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
