@@ -5,7 +5,13 @@
    <h4>投稿詳細</h4>
     <table>
      <tr>
-      <td><%#= image_tag @post.images,size:"200x200" %></td>
+      <td>
+       <% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+         <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+        <% end %>
+       <% end %>
+      </td>
      </tr>
      <tr>
       <td><%= @post.prefectures %></td><td><%= @post.spot_name %></td>
@@ -14,7 +20,7 @@
       <td><%= @post.spot_postal_code %></td><td><%= @post.spot_address %></td>
      </tr>
      <tr>
-      <td><%= @post.spot_point %></td>
+      <td><%= @post.point %></td>
      </tr>
      <tr>
       <td><%= @post.member.residence %></td><td><%= @post.member.age %></td>

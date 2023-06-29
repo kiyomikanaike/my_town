@@ -15,7 +15,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       ## Rememberable
       t.datetime :remember_created_at
 
-      t.string :birth_date,null: false #生年月日
+      t.date :birth_date,null: false #生年月日
       t.string :residence,null: false #居住地
       t.boolean :is_deleted,null: false,default: false #退会ステータス
 

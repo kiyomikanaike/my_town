@@ -4,10 +4,10 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :posts
-  
+
   def age
-  now = Time.zone.now
-  now.year - birth_date.year - (birth_date.to_date.change(year: now.year) > now ? 1 : 0)
+  now = Date.current
+  now.year- birth_date.year
   end
 
 end

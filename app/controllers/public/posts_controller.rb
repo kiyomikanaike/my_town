@@ -35,6 +35,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:prefectures, :spot_name,:spot_postal_code,:spot_address,:point, :images => [])
+    params.require(:post).permit(:prefectures, :spot_name,:spot_postal_code,:spot_address,:point, images: [])
   end
 end

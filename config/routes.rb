@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :post
   devise_for :members,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -12,13 +11,13 @@ Rails.application.routes.draw do
   #会員側のルーティング設定
   root to:'public/homes#top'#会員トップページ
   scope module: :public do
-  get 'members/my_page' => 'members#show'#会員マイページ
-  get 'members/information/edit' => 'members#edit'#会員登録情報編集
-  patch 'members/information' => 'members#update'#会員登録情報更新
-  get 'members/confirm_withdraw' => 'members#confirm_withdraw'#会員退会確認画面
-  patch 'members/withdraw' => 'members#withdraw'#会員退会処理
-
-  resources :posts,only: [:new,:create,:index,:show,:edit,:update,:destroy]#投稿機能
+    get 'members/my_page' => 'members#show'#会員マイページ
+    get 'members/information/edit' => 'members#edit'#会員登録情報編集
+    patch 'members/information' => 'members#update'#会員登録情報更新
+    get 'members/confirm_withdraw' => 'members#confirm_withdraw'#会員退会確認画面
+    patch 'members/withdraw' => 'members#withdraw'#会員退会処理
+  
+    resources :posts,only: [:new,:create,:index,:show,:edit,:update,:destroy]#投稿機能
   end
 
   #管理者側のルーティング設定

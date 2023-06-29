@@ -9,7 +9,7 @@
    </div>
 
 
-   居住地  <%= current_member.residence %>   生年月日  <%= current_member.birth_date %>
+   居住地  <%= current_member.residence %>   生年月日  <%= current_member.birth_date.strftime("%Y年%-m月%-d日") %>
 
    投稿履歴
    <% @posts.each do |post| %>
