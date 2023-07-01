@@ -16,6 +16,13 @@
      <%= link_to post.spot_name,post_path(post.id),class: 'text-dark' %>
    <% end %>
 
+   お気に入り
+   <% if @favorite_list.present? %>
+     <% @favorite_list.each do |post| %>
+       <%= post.spot_name %>
+     <% end %>
+   <% end %>
+
   </div>
  </div>
 </div>

@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   root to:'public/homes#top'#会員トップページ
   scope module: :public do
     get 'members/my_page' => 'members#show'#会員マイページ
+    #get 'members/my_page/favorite' => 'members#favorite'#お気に入り登録
     get 'members/information/edit' => 'members#edit'#会員登録情報編集
     patch 'members/information' => 'members#update'#会員登録情報更新
     get 'members/confirm_withdraw' => 'members#confirm_withdraw'#会員退会確認画面
     patch 'members/withdraw' => 'members#withdraw'#会員退会処理
   
     resources :posts,only: [:new,:create,:index,:show,:edit,:update,:destroy]#投稿機能
+     resource :favorites, only: [:create, :destroy]#お気に入り機能
   end
 
   #管理者側のルーティング設定
