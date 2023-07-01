@@ -16,7 +16,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index #投稿一覧
-    @posts = Post.all#各都道府県に投稿された内容全てとしたい
+    if params[:prefecture_id]
+      @prefecture = Prefecture.find(params[:prefecture_id])
+      @posts = @prefecture.posts
+    else
+      @posts = Post.all#各都道府県に投稿された内容全てとしたい
+    end
   end
 
   def show #投稿詳細
@@ -35,6 +40,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:prefectures, :spot_name,:spot_postal_code,:spot_address,:point, images: [])
+    params.require(:post).permit(:prefecture_id, :spot_name,:spot_postal_code,:spot_address,:point, images: [])
   end
 end

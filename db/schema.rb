@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_01_005150) do
+ActiveRecord::Schema.define(version: 2023_07_01_071818) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -77,12 +77,27 @@ ActiveRecord::Schema.define(version: 2023_07_01_005150) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "prefectures", null: false
     t.string "spot_name", null: false
     t.string "spot_postal_code", null: false
     t.string "spot_address", null: false
     t.string "point", null: false
     t.integer "member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "prefecture_id", null: false
+    t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
+  end
+
+  create_table "prefectures", force: :cascade do |t|
+    t.integer "region_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["region_id"], name: "index_prefectures_on_region_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -91,4 +106,6 @@ ActiveRecord::Schema.define(version: 2023_07_01_005150) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "members"
   add_foreign_key "favorites", "posts"
+  add_foreign_key "posts", "prefectures"
+  add_foreign_key "prefectures", "regions"
 end

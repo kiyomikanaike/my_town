@@ -3,8 +3,30 @@
   <div class="mx-auto">
 
    <div class="text-center p-5">
-   <h4>Topページ</h4>
+   <h5>わたしの街の穴場スポット</h5>
    </div>
+
+   <table>
+    <tr>
+     <% regions = Region.all %>
+     <% regions.each do |region | %>
+       <th><%= region.name %></th>
+     <% end %>
+    </tr>
+    <% 9.times do |i| %> <!-- エリア内の各都道府県の最大数 -->
+     <tr>
+       <% regions.length.times do |j| %><!-- エリア数(横列） -->
+         <% prefecture = regions[j].prefectures[i] %>
+         <% if prefecture.present? %>
+           <td><%= link_to prefecture.name, posts_path(prefecture_id: prefecture.id), class: 'text-dark' %></td>
+         <% else %>
+           <td></td>
+         <% end %>
+       <% end %>
+     </tr>
+     <% end %>
+
+   </table>
 
   </div>
  </div>
