@@ -20,8 +20,9 @@ class Public::PostsController < ApplicationController
       @prefecture = Prefecture.find(params[:prefecture_id])
       @posts = @prefecture.posts
     else
-      @posts = Post.all#各都道府県に投稿された内容全てとしたい
+      @posts = Post.all#都道府県関係なしに全て表示したければこのif文を使用
     end
+
   end
 
   def show #投稿詳細
@@ -29,15 +30,31 @@ class Public::PostsController < ApplicationController
   end
 
   def edit #投稿編集
+    @post = Post.find(params[:id])
   end
 
   def update #投稿データ更新
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+     flash[:success] = "You have updated post successfully."
+      redirect_to post_path(@post.id)
+    else
+      render 'edit'
+    end
   end
 
   def destroy #投稿データ削除
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to members_my_page_path
   end
 
   private
+  def ensure_member
+    @posts = current_member.posts
+    @post =@posts.find_by(id: params[:id])
+    redirect_to members_my_page_path unless @post
+  end
 
   def post_params
     params.require(:post).permit(:prefecture_id, :spot_name,:spot_postal_code,:spot_address,:point, images: [])

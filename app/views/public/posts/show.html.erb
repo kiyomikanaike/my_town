@@ -17,6 +17,11 @@
         <td class="font-weight-bold"><%= @post.prefecture.name %></td>
         <th>の</th>
         <td class="font-weight-bold"><%= @post.spot_name %></td>
+        <td>
+           <div id="favorite_<%=@post.id%>">
+            <%= render 'public/favorites/favorite' %>
+           </div>
+        </td>
        </tr>
        <tr>
         <th>address</th>
@@ -31,7 +36,8 @@
         <td><%= @post.member.residence %></td><td><%= @post.member.age %>歳</td>
        </tr>
       </table>
-
+        <%= link_to "編集する", edit_post_path(@post.id),class: 'btn btn-success' %>
+        <%= link_to "削除する", post_path(@post.id),class: 'btn btn-danger', method: :delete, "data-confirm" => "本当に削除しますか？" %>
   </div>
  </div>
 </div>

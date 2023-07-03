@@ -1,4 +1,4 @@
-class Members::FavoritesController < ApplicationController
+class Public::FavoritesController < ApplicationController
   before_action :set_post
   before_action :authenticate_member!   # ログイン中の会員のみに許可（未ログインなら、ログイン画面へ移動）
 

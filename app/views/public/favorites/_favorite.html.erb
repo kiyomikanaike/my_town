@@ -1,0 +1,11 @@
+  <% if !Favorite.exists?(member: current_member, post_id: @post.id) %>
+    <%= link_to post_favorites_path(@post), method: :post, remote: true, class: "favorite-btn favorite-post" do %>
+      <i class="fa-regular fa-bookmark"></i>
+        <%= @post.favorites.length %>
+    <% end %>
+  <% else    # お気に入り登録済みの時 %>
+    <%= link_to post_favorites_path(@post), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
+      <i class="fa-solid fa-bookmark"></i>
+        <%= @post.favorites.length %>
+    <% end %>
+  <% end %>

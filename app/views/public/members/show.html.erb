@@ -11,15 +11,19 @@
 
    居住地  <%= current_member.residence %>   生年月日  <%= current_member.birth_date.strftime("%Y年%-m月%-d日") %>
 
-   投稿履歴
+   <h6>投稿履歴</h6>
    <% @posts.each do |post| %>
      <%= link_to post.spot_name,post_path(post.id),class: 'text-dark' %>
    <% end %>
 
-   お気に入り
+   <h6>お気に入り</h6>
    <% if @favorite_list.present? %>
      <% @favorite_list.each do |post| %>
-       <%= post.spot_name %>
+       <% post.images.each do |image| %>
+        <%= link_to post_path(post.id) do %>
+         <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+        <% end %>
+       <% end %>
      <% end %>
    <% end %>
 
