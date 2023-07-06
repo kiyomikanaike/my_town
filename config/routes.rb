@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get 'members/confirm_withdraw' => 'members#confirm_withdraw'#会員退会確認画面
     patch 'members/withdraw' => 'members#withdraw'#会員退会処理
     get 'members/favorites' => 'members#favorites'#お気に入り登録
-    
+
     resources :posts,only: [:new,:create,:index,:show,:edit,:update,:destroy] do#投稿機能
      resource :favorites, only: [:create, :destroy]
     end

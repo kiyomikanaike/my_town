@@ -58,6 +58,11 @@ Prefecture.create!([
   { region_id: 8, name: '鹿児島県' },
   { region_id: 8, name: '沖縄県' }
 ])
+
+Admin.create!(
+  email:"kiyo@gmail.com",
+  password:"e123456"
+  )
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
