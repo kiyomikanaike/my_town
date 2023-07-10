@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   #管理者側のルーティング設定
-  get 'admin' => 'admin/homes#top'#管理者トップページ
+  get 'admin' => 'admin/homes#top'#管理者トップページ（会員一覧
   namespace :admin do
     resources :members,only: [:index,:show,:edit,:update,:destroy]
 

@@ -1,7 +1,17 @@
 <div class="container">
- <div class="row">
-  <div class="mx-auto">
-    <h3>管理者トップ</h3>
-  </div>
- </div>
+  <h4 class="mt-5 mb-4">会員一覧</h4>
+
+    <table class="w-100 table">
+      <tr>
+       <th>居住地</th>
+       <th>生年月日</th>
+      </tr>
+      <% @members.each do |member| %>
+      <tr>
+       <td><%= link_to member.residence,admin_member_path(member.id),class: 'text-dark' %></td>
+       <td><%= member.birth_date %></td>
+      </tr>
+      <% end %>
+    </table>
+    <%= paginate @members %>
 </div>
