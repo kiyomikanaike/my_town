@@ -11,4 +11,12 @@ class Member < ApplicationRecord
   now.year- birth_date.year
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |member|
+      member.password = SecureRandom.urlsafe_base64
+      member.residence = "東京"
+      member.birth_date = Date.today
+    end
+  end
+
 end

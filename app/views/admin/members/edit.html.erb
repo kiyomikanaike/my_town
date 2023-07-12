@@ -1,7 +1,33 @@
 <div class="container">
  <div class="row">
   <div class="mx-auto">
-    <h3>会員編集</h3>
+
+   <h4 class="mt-5 mb-4">会員編集</h4>
+    <table>
+      <%= form_with model: @member,url: admin_member_path do |f| %>
+      <tr>
+       <th><label for="inputResidence">居住地</label></th>
+       <td><%= f.text_field :residence, autofocus: true %></td>
+      </tr>
+      <tr>
+        <th><label for="inputBirthdate">生年月日</label></th>
+        <td><%= f.text_field :birth_date %></td>
+      </tr>
+      <tr>
+        <th><label for="inputEmail">メールアドレス</label></th>
+        <td><%= f.text_field :email %></td>
+      </tr>
+      <tr>
+        <th><label for="inputStatus">会員ステータス</label></th>
+        <td>
+        <%#= f.radio_button :is_deleted, true %>
+        <%#= f.label :is_deleted,"有効" %>
+        <%#= f.radio_button :is_deleted, false %>
+        <%#= f.label :is_deleted,"退会" %></td>
+      </tr>
+      </table>
+       <span><%= f.submit "変更を保存",class: 'btn btn-success' %></span>
+       <% end %>
   </div>
  </div>
 </div>

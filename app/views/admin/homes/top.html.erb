@@ -3,13 +3,19 @@
 
     <table class="w-100 table">
       <tr>
+       <th>会員ID</th>
        <th>居住地</th>
        <th>生年月日</th>
+       <th>メールアドレス</th>
+       <th>ステータス</th>
       </tr>
       <% @members.each do |member| %>
       <tr>
+       <td><%= member.id %></td>
        <td><%= link_to member.residence,admin_member_path(member.id),class: 'text-dark' %></td>
        <td><%= member.birth_date %></td>
+       <td><%= member.email %></td>
+       
       </tr>
       <% end %>
     </table>

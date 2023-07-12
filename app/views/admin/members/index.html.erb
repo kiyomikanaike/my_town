@@ -1,7 +1,16 @@
 <div class="container">
  <div class="row">
   <div class="mx-auto">
-    <h3>一覧</h3>
+   
+    <h4 class="mt-5 mb-4">投稿履歴</h4>
+    居住地  <%= @member.residence %>   生年月日  <%= @member.birth_date.strftime("%Y年%-m月%-d日") %>
+    
+     <% @posts.each do |post| %>
+      <%= link_to post.spot_name,post_path(post.id),class: 'text-dark' %>
+     <% end %>
+
+    
+    
   </div>
  </div>
 </div>

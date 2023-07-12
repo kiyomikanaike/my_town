@@ -19,6 +19,7 @@ class Public::PostsController < ApplicationController
     if params[:prefecture_id]
       @prefecture = Prefecture.find(params[:prefecture_id])
       @posts = @prefecture.posts
+      @title = @prefecture.name
     else
       @posts = Post.all#都道府県関係なしに全て表示したければこのif文を使用
     end
@@ -27,6 +28,12 @@ class Public::PostsController < ApplicationController
 
   def show #投稿詳細
     @post = Post.find(params[:id])
+  end
+
+  def search #絞り込み表示
+    @posts = Post.where("spot_address LIKE ?", "%#{params[:q]}%")
+    @title = "#{params[:q]}" #検索入力した
+    render 'index'
   end
 
   def edit #投稿編集

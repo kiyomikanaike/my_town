@@ -17,18 +17,24 @@ Rails.application.routes.draw do
     get 'members/confirm_withdraw' => 'members#confirm_withdraw'#会員退会確認画面
     patch 'members/withdraw' => 'members#withdraw'#会員退会処理
     get 'members/favorites' => 'members#favorites'#お気に入り登録
-
+    get 'posts/search', to: 'posts#search', as: 'search_posts'#絞り込み表示
     resources :posts,only: [:new,:create,:index,:show,:edit,:update,:destroy] do#投稿機能
      resource :favorites, only: [:create, :destroy]
     end
      resource :favorites, only: [:create, :destroy]#お気に入り機能
+
   end
 
   #管理者側のルーティング設定
-  get 'admin' => 'admin/homes#top'#管理者トップページ（会員一覧
+  get 'admin' => 'admin/homes#top'#管理者トップページ（会員一覧）
   namespace :admin do
     resources :members,only: [:index,:show,:edit,:update,:destroy]
 
+  end
+
+  #ゲストログイン
+  devise_scope :member do
+    post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
   end
 
 
