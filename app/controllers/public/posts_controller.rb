@@ -32,7 +32,7 @@ class Public::PostsController < ApplicationController
 
   def search #絞り込み表示
     @posts = Post.where("spot_address LIKE ?", "%#{params[:q]}%")
-    @title = "#{params[:q]}" #検索入力した
+    @title = "#{params[:q]}" #検索入力した内容
     render 'index'
   end
 
