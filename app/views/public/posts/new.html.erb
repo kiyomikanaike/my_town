@@ -5,6 +5,14 @@
    <div class="text-center p-5">
    <h5>新規投稿</h5>
    </div>
+    <% if @post.errors.any? %>
+      <%= @post.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
     <%= form_with model: @post do |f| %>
      <table>
