@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+    before_action :authenticate_member!, except: [:index,:show,:search]
   def new #新規投稿画面
     @post = Post.new
   end
@@ -19,11 +20,17 @@ class Public::PostsController < ApplicationController
     if params[:prefecture_id]
       @prefecture = Prefecture.find(params[:prefecture_id])
       @posts = @prefecture.posts
+      @flag = false
+       if params[:ranking]
+        #@posts = @posts.joins(:favorites).group('posts.id').order('COUNT(favorites.id)')
+        @posts = @posts.sort{|a,b| b.favorites.count <=> a.favorites.count}
+        @flag = true
+        puts 'test'
+       end
       @title = @prefecture.name
     else
       @posts = Post.all#都道府県関係なしに全て表示したければこのif文を使用
     end
-
   end
 
   def show #投稿詳細

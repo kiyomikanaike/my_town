@@ -1,13 +1,16 @@
 class Admin::MembersController < ApplicationController
-  def index　#会員の投稿履歴
+  before_action :authenticate_admin!
+  def history #会員の投稿履歴
+    @member = Member.find(params[:id])
+    @posts = @member.posts
   end
 
   def show #会員詳細
-    @memeber = Member.find(params[:id])
+    @member = Member.find(params[:id])
   end
 
   def edit #会員編集
-    @memeber = Member.find(params[:id])
+    @member = Member.find(params[:id])
   end
 
   def update #会員情報更新
@@ -21,6 +24,6 @@ class Admin::MembersController < ApplicationController
   private
   # ストロングパラメータ
   def member_params
-    params.require(:member).permit(:birth_date, :residence,)
+    params.require(:member).permit(:birth_date, :residence, :email)
   end
 end

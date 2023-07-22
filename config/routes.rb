@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'admin' => 'admin/homes#top'#管理者トップページ（会員一覧）
   namespace :admin do
     resources :members,only: [:index,:show,:edit,:update,:destroy]
-
+    get 'member/:id/history' => 'members#history', as: 'member_history'
   end
 
   #ゲストログイン

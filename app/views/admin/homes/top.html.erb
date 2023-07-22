@@ -15,7 +15,12 @@
        <td><%= link_to member.residence,admin_member_path(member.id),class: 'text-dark' %></td>
        <td><%= member.birth_date %></td>
        <td><%= member.email %></td>
-       
+           <% if member.is_deleted == true %>
+        <td class="text-black-50">退会</td>
+           <% else %>
+        <td class="text-success">有効</td>
+           <% end %>
+
       </tr>
       <% end %>
     </table>

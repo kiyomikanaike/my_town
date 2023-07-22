@@ -1,9 +1,9 @@
 class Public::MembersController < ApplicationController
-
+  before_action :authenticate_member!
   def show #会員マイページ
     @member = current_member
     @posts = @member.posts
-    
+
     favorites = Favorite.where(member_id: current_member.id).pluck(:post_id)  # ログイン中の会員のお気に入りのpost_idカラムを取得
     @favorite_list = Post.find(favorites)     # postsテーブルから、お気に入り登録済みのレコードを取得
   end

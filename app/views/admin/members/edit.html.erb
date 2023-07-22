@@ -20,10 +20,10 @@
       <tr>
         <th><label for="inputStatus">会員ステータス</label></th>
         <td>
-        <%#= f.radio_button :is_deleted, true %>
-        <%#= f.label :is_deleted,"有効" %>
-        <%#= f.radio_button :is_deleted, false %>
-        <%#= f.label :is_deleted,"退会" %></td>
+        <%= f.radio_button :is_deleted, true %>
+        <%= f.label :is_deleted,"有効" %>
+        <%= f.radio_button :is_deleted, false %>
+        <%= f.label :is_deleted,"退会" %></td>
       </tr>
       </table>
        <span><%= f.submit "変更を保存",class: 'btn btn-success' %></span>

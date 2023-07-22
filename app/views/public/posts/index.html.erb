@@ -3,15 +3,32 @@
   <div class="mx-auto">
 
    <h4 class="mt-4 mb-4"><%= @title %>の穴場スポット</h4>
+   <%= link_to "人気順", posts_path(prefecture_id: @prefecture.id, ranking: "favorites"), class: 'text-dark' %>
 
-    <div>
+   <div>
      <% @posts.each do |post| %>
-      <% if post.images.attached? %>
-       <% post.images.each do |image| %>
-        <%= link_to post_path(post.id) do %>
-         <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
-        <% end %>
+       <% if post.images.attached? %>
+
+         <% if @flag %>
+           <% post.images.each do |image| %>
+             <% if post.favorites.count !=0 %>
+               <%= link_to post_path(post.id) do %>
+               <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+               <% end %>
+             <% end %>
+           <% end %>
+
+         <% else %>
+
+           <% post.images.each do |image| %>
+             <%= link_to post_path(post.id) do %>
+             <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+           <% end %>
+         <% end %>
+
        <% end %>
+
+
       <% end %>
      <% end %>
     </div>
