@@ -19,10 +19,9 @@ class Public::PostsController < ApplicationController
   def index #投稿一覧
     if params[:prefecture_id]
       @prefecture = Prefecture.find(params[:prefecture_id])
-      @posts = @prefecture.posts
+      @posts = @prefecture.posts.where(status: "公開") #公開内容のみ表示
       @flag = false
        if params[:ranking]
-        #@posts = @posts.joins(:favorites).group('posts.id').order('COUNT(favorites.id)')
         @posts = @posts.sort{|a,b| b.favorites.count <=> a.favorites.count}
         @flag = true
         puts 'test'
@@ -36,6 +35,7 @@ class Public::PostsController < ApplicationController
   def show #投稿詳細
     @post = Post.find(params[:id])
   end
+
 
   def search #絞り込み表示
     @posts = Post.where("spot_address LIKE ?", "%#{params[:q]}%")
@@ -71,6 +71,6 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:prefecture_id, :spot_name,:spot_postal_code,:spot_address,:point, images: [])
+    params.require(:post).permit(:prefecture_id, :spot_name,:spot_postal_code,:spot_address,:point,:status, images: [])
   end
 end

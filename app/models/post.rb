@@ -10,4 +10,8 @@ class Post < ApplicationRecord
   validates :spot_address,presence:true
   validates :point,presence:true
 
+  enum status: { "非公開": 0, "公開": 1 } #非公開：０　公開：１
+
+
+
 end

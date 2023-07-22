@@ -47,10 +47,15 @@
         <td><%= f.text_area :point %></td>
        </tr>
 
+       <tr>
+        <td><%= f.label "公開/非公開" %></td>
+        <td><%= f.select :status, Post.statuses.map {|k, v| [k, k]} %></td>
+       </tr>
 
        <tr>
         <td><%= f.submit "投稿",class: 'btn btn-success' %></td>
        </tr>
+
       </table>
     <% end %>
 
