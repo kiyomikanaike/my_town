@@ -3,7 +3,7 @@
   <div class="mx-auto">
 
    <h4 class="mt-4 mb-4"><%= @title %>の穴場スポット</h4>
-   <%= link_to "人気順", posts_path(prefecture_id: @prefecture.id, ranking: "favorites"), class: 'text-dark' %>
+   <%= link_to_if @prefecture.present?, "人気順", posts_path(prefecture_id: @prefecture&.id, ranking: "favorites"), class: 'text-dark' %>
 
    <div>
      <% @posts.each do |post| %>

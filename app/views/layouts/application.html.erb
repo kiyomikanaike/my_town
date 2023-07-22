@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://kit.fontawesome.com/5b9f916125.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -17,10 +17,15 @@
         <div class="container">
           <a class="navbar-brand p-3" href="/"><%= image_tag 'my_town_logo.jpg',size: '150x150' %></a>
           <%= form_with(url: search_posts_path, method: "get", local: true) do |form| %>
-          <%= form.label :q, "住所で検索:" %>
-          <%= form.text_field :q %>
-          <%= form.submit "検索" %>
-          <% end %>
+            <div class="search-box">
+                <%= form.label :q, "住所で検索：" %>
+                <%= form.text_field :q %>
+                <%= button_tag(type: "submit", class: "search-icon-button") do %>
+                  <i class= "fas fa-search" style="color: #8b9098;"></i>
+                <% end %>
+              </div>
+            <% end %>
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

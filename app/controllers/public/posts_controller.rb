@@ -24,7 +24,6 @@ class Public::PostsController < ApplicationController
        if params[:ranking]
         @posts = @posts.sort{|a,b| b.favorites.count <=> a.favorites.count}
         @flag = true
-        puts 'test'
        end
       @title = @prefecture.name
     else
@@ -40,6 +39,8 @@ class Public::PostsController < ApplicationController
   def search #絞り込み表示
     @posts = Post.where("spot_address LIKE ?", "%#{params[:q]}%")
     @title = "#{params[:q]}" #検索入力した内容
+    @prefecture = @posts.first.prefecture
+    @title = params[:q]
     render 'index'
   end
 

@@ -22,3 +22,21 @@ img
 	width: 200px;
 	object-fit: cover;
 }
+
+// 検索ボックス
+.search-box {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px; /* マージンを調整してアイコンとテキストフィールドの間隔を調整 */
+}
+
+.search-icon-button:focus {
+  outline: none;
+}
