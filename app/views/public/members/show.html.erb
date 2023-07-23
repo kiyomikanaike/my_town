@@ -11,13 +11,14 @@
 
        <h6 class="mt-4 mb-2">投稿履歴</h6>
         <% @posts.each do |post| %>
-          <%#= link_to post.spot_name,post_path(post.id),class: 'text-dark' %>
-          <% post.images.each do |image| %>
+          <% post.images.first(4).each do |image| %> <%# imageを4つまで表示 %>
              <%= link_to post_path(post.id) do %>
               <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
              <% end %>
           <% end %>
         <% end %>
+        <div class="text-right"><%= link_to "more ＞",posts_path,class: 'text-black-50' %></div>
+
 
        <h6 class="mt-4 mb-2">お気に入り</h6>
        <div class="favorite">
