@@ -2,30 +2,40 @@
  <div class="row">
   <div class="mx-auto">
 
-   <div class="text-center p-5">
-    <h5 class="mt-4 mb-4">マイページ</h5>
-    <%= link_to "編集する", members_information_edit_path,class: 'btn btn-success' %>
-    <%= link_to "退会する", members_confirm_withdraw_path,class: 'btn btn-danger' %>
-   </div>
+    <h5 class="text-center mt-4 mb-4">マイページ</h5>
+    <div class="my_page", style="text-align: center; font-size: 15px;">
+      <i class= "fas fa-house" style="color: #8b9098; font-size: 20px; margin-right: 5px;"></i><%= current_member.residence %>
+      <i class="fa-solid fa-cake-candles" style="color: #8b9098; font-size: 20px; margin-right: 5px; margin-left: 15px;"></i>  <%= current_member.birth_date.strftime("%Y年%-m月%-d日") %>
+      <i class="fa-regular fa-envelope" style="color: #8b9098; font-size: 20px; margin-right: 5px; margin-left: 15px;"></i>  <%= current_member.email %>
+     </div>
 
-
-   居住地  <%= current_member.residence %>   生年月日  <%= current_member.birth_date.strftime("%Y年%-m月%-d日") %>
-
-   <h6>投稿履歴</h6>
-   <% @posts.each do |post| %>
-     <%= link_to post.spot_name,post_path(post.id),class: 'text-dark' %>
-   <% end %>
-
-   <h6>お気に入り</h6>
-   <% if @favorite_list.present? %>
-     <% @favorite_list.each do |post| %>
-       <% post.images.each do |image| %>
-        <%= link_to post_path(post.id) do %>
-         <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+       <h6 class="mt-4 mb-2">投稿履歴</h6>
+        <% @posts.each do |post| %>
+          <%#= link_to post.spot_name,post_path(post.id),class: 'text-dark' %>
+          <% post.images.each do |image| %>
+             <%= link_to post_path(post.id) do %>
+              <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+             <% end %>
+          <% end %>
         <% end %>
-       <% end %>
-     <% end %>
-   <% end %>
+
+       <h6 class="mt-4 mb-2">お気に入り</h6>
+       <div class="favorite">
+         <% if @favorite_list.present? %>
+           <% @favorite_list.each do |post| %>
+             <% post.images.each do |image| %>
+              <%= link_to post_path(post.id) do %>
+               <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+              <% end %>
+             <% end %>
+           <% end %>
+         <% end %>
+        </div>
+
+       <div class="mt-4 mb-4", style="display: flex;">
+        <%= link_to "編集", members_information_edit_path,class: 'btn btn-sm', style: "margin-right: 5px;" %>
+        <%= link_to "退会", members_confirm_withdraw_path,class: 'btn btn-sm', style: "margin-left: 10px;" %>
+       </div>
 
   </div>
  </div>

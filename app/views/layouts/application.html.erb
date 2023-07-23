@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css', integrity: 'sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin: 'anonymous' %>
     <script src="https://kit.fontawesome.com/5b9f916125.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -18,8 +19,7 @@
           <a class="navbar-brand p-3" href="/"><%= image_tag 'my_town_logo.jpg',size: '150x150' %></a>
           <%= form_with(url: search_posts_path, method: "get", local: true) do |form| %>
             <div class="search-box">
-                <%= form.label :q, "住所で検索：" %>
-                <%= form.text_field :q %>
+                <%= form.text_field :q, placeholder: "住所で検索" %>
                 <%= button_tag(type: "submit", class: "search-icon-button") do %>
                   <i class= "fas fa-search" style="color: #8b9098;"></i>
                 <% end %>

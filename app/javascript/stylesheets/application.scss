@@ -40,3 +40,38 @@ img
 .search-icon-button:focus {
   outline: none;
 }
+
+input[type="text"]::placeholder {
+  color: #999; /* プレースホルダーテキストの色をグレーに設定 */
+}
+
+/* 登録ボタンのカスタマイズ */
+ .btn {
+	display: block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+// 	width: 120px;
+	margin: auto;
+	padding: 0.5rem 2.5rem;
+	font-weight: bold;
+	border: 2px solid #99CCCC;
+	color: #99CCCC;
+	border-radius: 100vh;
+	transition: 0.5s;
+}
+.btn:hover {
+	color: #fff;
+	background: #99CCCC;
+}
+
+h5.text-center {
+  color: #99CCCC;
+}
+
+// .container {
+//   background-image: url("/assets/green.jpg");
+// 　background-repeat: no-repeat; //画像を繰り返さない
+//   background-size: cover;　//縦横の比を保ったまま、要素にぴったりなサイズになる
+  
+// }
