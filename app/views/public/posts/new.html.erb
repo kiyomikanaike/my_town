@@ -17,7 +17,7 @@
 
      <div class="form-group">
        <%= f.label "都道府県" %>
-       <%= f.select :prefecture_id, Prefecture.pluck(:name, :id) %>
+       <%= f.select :prefecture_id, Prefecture.pluck(:name, :id),{ include_blank: '選択してください' } ,{ class: "form-control" } %>
      </div>
 
      <div class="form-group">
@@ -26,28 +26,28 @@
      </div>
 
      <div class="form-group">
-       <%= f.label "写真" %>
+       <%= f.label "写真（複数選択可）" %>
        <%= f.file_field :images, direct_upload: true, multiple: true %>
      </div>
 
      <div class="form-group">
        <%= f.label "郵便番号" %>
-       <%= f.text_field :spot_postal_code %>
+       <%= f.text_field :spot_postal_code,class: "form-control"  %>
      </div>
 
      <div class="form-group">
        <%= f.label "住所" %>
-       <%= f.text_field :spot_address %>
+       <%= f.text_field :spot_address,class: "form-control"  %>
      </div>
 
      <div class="form-group">
        <%= f.label "おすすめポイント" %>
-       <%= f.text_area :point %>
+       <%= f.text_area :point,class: "form-control"  %>
      </div>
 
      <div class="form-group">
        <%= f.label "公開/非公開" %>
-       <%= f.select :status, Post.statuses.map {|k, v| [k, k]} %>
+       <%= f.select :status, Post.statuses.map {|k, v| [k, k]}, {}, class: "form-control"   %>
      </div>
 
      <div class="form-group mt-4 mb-2">
