@@ -36,8 +36,8 @@
         <td><%= @post.member.residence %></td><td><%= @post.member.age %>歳</td>
        </tr>
       </table>
-        <%= link_to "編集する", edit_post_path(@post.id),class: 'btn btn-success' %>
-        <%= link_to "削除する", post_path(@post.id),class: 'btn btn-danger', method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <%= link_to "編集する", edit_post_path(@post.id),class: 'btn' %>
+        <%= link_to "削除する", post_path(@post.id),class: 'btn', method: :delete, "data-confirm" => "本当に削除しますか？" %>
   </div>
  </div>
 </div>
