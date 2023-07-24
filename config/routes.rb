@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root to:'public/homes#top'#会員トップページ
   scope module: :public do
     get 'members/my_page' => 'members#show'#会員マイページ
+    get 'members/my_posts' => 'members#my_posts', as: 'my_posts' #会員の投稿一覧
+    get 'members/favorite_posts' => 'members#favorite_posts', as: 'favorite_posts' #会員のお気に入り一覧
     get 'members/information/edit' => 'members#edit'#会員登録情報編集
     patch 'members/information' => 'members#update'#会員登録情報更新
     get 'members/confirm_withdraw' => 'members#confirm_withdraw'#会員退会確認画面

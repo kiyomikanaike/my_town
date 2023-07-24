@@ -1,0 +1,22 @@
+<div class="container">
+ <div class="row">
+  <div class="mx-auto">
+
+    <h5 class="mt-4 mb-4">お気に入り一覧</h5>
+
+    <div class="favorite">
+         <% if @favorite_list.present? %>
+           <% @favorite_list.each do |post| %>
+             <% post.images.each do |image| %>
+               <%= link_to post_path(post.id) do %>
+                <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+              <% end %>
+             <% end %>
+           <% end %>
+         <% end %>
+    </div>
+
+
+  </div>
+ </div>
+</div>

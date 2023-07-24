@@ -10,14 +10,17 @@
      </div>
 
        <h6 class="mt-4 mb-2">投稿履歴</h6>
-        <% @posts.each do |post| %>
-          <% post.images.first(4).each do |image| %> <%# imageを4つまで表示 %>
-             <%= link_to post_path(post.id) do %>
-              <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+         <% @posts.each do |post| %>
+           <% post.images.each do |image| %> <%# imageを4つまで表示 %>
+             <% @history_count += 1 %>
+             <% if @history_count <= 4 %>
+               <%= link_to post_path(post.id) do %>
+                 <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+               <% end %>
              <% end %>
-          <% end %>
-        <% end %>
-        <div class="text-right"><%= link_to "more ＞",posts_path,class: 'text-black-50' %></div>
+           <% end %>
+         <% end %>
+        <div class="text-right"><%= link_to "more ＞", my_posts_path, class: 'text-black-50' %></div>
 
 
        <h6 class="mt-4 mb-2">お気に入り</h6>
@@ -25,12 +28,16 @@
          <% if @favorite_list.present? %>
            <% @favorite_list.each do |post| %>
              <% post.images.each do |image| %>
-              <%= link_to post_path(post.id) do %>
-               <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+              <% @favorite_count += 1 %>
+              <% if @favorite_count <= 4 %>
+               <%= link_to post_path(post.id) do %>
+                <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+               <% end %>
               <% end %>
              <% end %>
            <% end %>
          <% end %>
+         <div class="text-right"><%= link_to "more ＞", favorite_posts_path, class: 'text-black-50' %></div>
         </div>
 
        <div class="mt-4 mb-4", style="display: flex;">
