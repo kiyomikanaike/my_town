@@ -15,8 +15,11 @@ class Admin::MembersController < ApplicationController
 
   def update #会員情報更新
     @member = Member.find(params[:id])
-    @member.update(member_params)
-    redirect_to admin_member_path
+    if @member.update(member_params)
+      redirect_to admin_member_path
+    else
+      render :edit
+    end
   end
 
   def destroy #会員の投稿削除
@@ -24,6 +27,6 @@ class Admin::MembersController < ApplicationController
   private
   # ストロングパラメータ
   def member_params
-    params.require(:member).permit(:birth_date, :residence, :email)
+    params.require(:member).permit(:birth_date, :residence, :email, :is_deleted)
   end
 end

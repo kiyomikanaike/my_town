@@ -2,8 +2,8 @@
  <div class="row">
   <div class="mx-auto">
 
-    <h4 class="mt-5 mb-4">会員詳細</h4>
-    <table class="table">
+    <h5 class="mt-5 mb-4 text-center">会員詳細</h5>
+    <table class="table text-black-50">
     <tr>
       <th>居住地</th>
       <td><%= @member.residence %></td>
@@ -26,8 +26,11 @@
     </tr>
   </table>
 
-  <span><%= link_to "編集する",edit_admin_member_path,class: 'btn btn-success' %></span>
-  <span><%= link_to "投稿履歴",admin_member_history_path(@member),class: 'btn btn-success' %></span>
+  <div class="mt-4 mb-4", style="display: flex;">
+    <%= link_to "編集する",edit_admin_member_path,class: 'btn btn-sm', style: "margin-right: 5px;"  %>
+    <%= link_to "投稿履歴",admin_member_history_path(@member),class: 'btn btn-sm', style: "margin-left: 10px;" %>
+  </div>
+
 
   </div>
  </div>

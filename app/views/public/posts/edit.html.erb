@@ -2,51 +2,51 @@
  <div class="row">
   <div class="mx-auto">
 
-   <h5 class="mt-4 mb-4">投稿編集</h5>
+   <h5 class="text-center mt-4 mb-4">投稿内容の編集</h5>
 
     <%= form_with model: @post,url: post_path do |f| %>
 
-     <table>
-      <tr>
-       <td><%= f.label "都道府県" %></td>
-       <td><%= f.select :prefecture_id, Prefecture.pluck(:name, :id) %></td>
-      </tr>
+     <div class="form-group">
+       <%= f.label "都道府県" %>
+       <%= f.select :prefecture_id, Prefecture.pluck(:name, :id),{ include_blank: '選択してください' } ,{ class: "form-control" } %>
+     </div>
 
-      <tr>
-       <td><%= f.label "スポット名" %></td>
-       <td><%= f.text_field :spot_name %></td>
-      </tr>
+     <div class="form-group">
+       <%= f.label "スポット名" %>
+       <%= f.text_field :spot_name,class: "form-control" %>
+     </div>
 
-       <tr>
-        <th><%= f.label "写真" %></th>
-        <td><%= f.file_field :images, direct_upload: true, multiple: true %></td>
-       </tr>
+     <div class="form-group">
+       <%= f.label "写真（複数選択可）" %>
+       <%= f.file_field :images, direct_upload: true, multiple: true %>
+     </div>
 
-       <tr>
-        <td><%= f.label "郵便番号" %></td>
-        <td><%= f.text_field :spot_postal_code %></td>
-       </tr>
+     <div class="form-group">
+       <%= f.label "郵便番号" %>
+       <%= f.text_field :spot_postal_code,class: "form-control"  %>
+     </div>
 
-       <tr>
-        <td><%= f.label "住所" %></td>
-        <td><%= f.text_field :spot_address %></td>
-       </tr>
+     <div class="form-group">
+       <%= f.label "住所" %>
+       <%= f.text_field :spot_address,class: "form-control"  %>
+     </div>
 
-       <tr>
-        <td><%= f.label "おすすめポイント" %></td>
-        <td><%= f.text_area :point %></td>
-       </tr>
+     <div class="form-group">
+       <%= f.label "おすすめポイント" %>
+       <%= f.text_area :point,class: "form-control"  %>
+     </div>
 
-       <tr>
-        <td><%= f.label "公開/非公開" %></td>
-        <td><%= f.select :status, Post.statuses.map {|k, v| [k, k]} %></td>
-       </tr>
+     <div class="form-group">
+       <%= f.label "公開/非公開" %>
+       <%= f.select :status, Post.statuses.map {|k, v| [k, k]}, {}, class: "form-control"   %>
+     </div>
 
-       <tr>
-        <td><%= f.submit 'Update',class: 'btn btn-success' %></td>
-       </tr>
-     </table>
+     <div class="form-group mt-4 mb-2">
+       <%= f.submit "更新",class: 'btn' %>
+     </div>
     <% end %>
+
+
   </div>
  </div>
 </div>

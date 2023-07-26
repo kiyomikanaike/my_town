@@ -2,42 +2,50 @@
  <div class="row">
   <div class="mx-auto">
 
-     <h5 class="mt-4 mb-4">投稿詳細</h5>
-      <table>
-       <tr>
-        <td>
-         <% if @post.images.attached? %>
-          <% @post.images.each do |image| %>
-           <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
-          <% end %>
-         <% end %>
-        </td>
-       </tr>
-       <tr>
-        <td class="font-weight-bold"><%= @post.prefecture.name %></td>
-        <th>の</th>
-        <td class="font-weight-bold"><%= @post.spot_name %></td>
-        <td>
-           <div id="favorite_<%=@post.id%>">
-            <%= render 'public/favorites/favorite' %>
-           </div>
-        </td>
-       </tr>
-       <tr>
-        <th>address</th>
-        <td><%= @post.spot_postal_code %></td><td><%= @post.spot_address %></td>
-       </tr>
-       <tr>
-        <th>point</th>
-        <td><%= @post.point %></td>
-       </tr>
-       <tr>
-        <th>投稿者</th>
-        <td><%= @post.member.residence %></td><td><%= @post.member.age %>歳</td>
-       </tr>
-      </table>
-        <%= link_to "編集する", edit_post_path(@post.id),class: 'btn' %>
-        <%= link_to "削除する", post_path(@post.id),class: 'btn', method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <div class="row">
+　　 <div class="mr-3">
+       <h5 class="mb-4 font-weight-bold">
+        <%= @post.prefecture.name %>の<%= @post.spot_name %>
+       </h5>
+     </div>
+
+     <div>
+       <div id="favorite_<%=@post.id%>">
+         <%= render 'public/favorites/favorite' %>
+       </div>
+     </div>
+    </div>
+
+
+
+     <div>
+       <% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+         <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+        <% end %>
+       <% end %>
+     </div>
+
+     <div class="mt-4">
+       住所：<%= @post.spot_postal_code %><%= @post.spot_address %>
+     </div>
+
+     <div>
+       口コミ：<%= @post.point %>
+     </div>
+
+     <div>
+       投稿者：<%= @post.member.residence %> <%= @post.member.age %>歳
+     </div>
+
+     <% if @post.member.email == current_member.email %>
+      <div class="mt-4 mb-4", style="display: flex;">
+        <%= link_to "編集する", edit_post_path(@post.id),class: 'btn btn-sm', style: "margin-right: 5px;" %>
+        <%= link_to "削除する", post_path(@post.id),class: 'btn btn-sm', style: "margin-left: 10px;", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </div>
+     <% end %>
+
+
   </div>
  </div>
 </div>

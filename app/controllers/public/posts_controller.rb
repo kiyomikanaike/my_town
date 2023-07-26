@@ -49,7 +49,7 @@ class Public::PostsController < ApplicationController
   end
 
   def update #投稿データ更新
-    @post = Post.find(params[:id])
+    @post = current_member.posts.find(params[:id])
     if @post.update(post_params)
      flash[:success] = "You have updated post successfully."
       redirect_to post_path(@post.id)
@@ -59,7 +59,7 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy #投稿データ削除
-    @post = Post.find(params[:id])
+    @post = current_member.posts.find(params[:id])
     @post.destroy
     redirect_to members_my_page_path
   end
