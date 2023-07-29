@@ -19,7 +19,7 @@
           <% @posts.each do |post| %>
         <tr>
          <td><%= post.id %></td>
-         <td><%= link_to post.spot_name,post_path(post.id),class: 'text-dark' %></td>
+         <td><%= link_to post.spot_name,admin_post_path(post.id),class: 'text-dark' %></td>
          <td><%= post.created_at %></td>
         </tr>
           <% end %>

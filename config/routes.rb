@@ -30,8 +30,9 @@ Rails.application.routes.draw do
   #管理者側のルーティング設定
   get 'admin' => 'admin/homes#top'#管理者トップページ（会員一覧）
   namespace :admin do
-    resources :members,only: [:index,:show,:edit,:update,:destroy]
-    get 'member/:id/history' => 'members#history', as: 'member_history'
+    resources :members,only: [:show,:edit,:update]
+    get 'posts/:id/history' => 'posts#history', as: 'posts_history'
+    resources :posts, only: [:show, :destroy]
   end
 
   #ゲストログイン

@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    models:
+      member: 会員
+    attributes:
+      member:
+        email: メールアドレス
+        encrypted_password: パスワード
+        birth_date: 生年月日
+        residence: お住まい
+      post:
+        prefecture: 都道府県
+        spot_name: スポット名
+        spot_address: 住所
+        spot_postal_code: 郵便番号
+        images: 写真
+        point: おすすめポイント
+

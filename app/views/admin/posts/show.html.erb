@@ -9,14 +9,6 @@
        </h5>
      </div>
 
-     <div>
-       <div id="favorite_<%=@post.id%>">
-         <%= render 'public/favorites/favorite' %>
-       </div>
-     </div>
-    </div>
-
-
 
      <div>
        <% if @post.images.attached? %>
@@ -38,13 +30,9 @@
        投稿者：<%= @post.member.residence %> <%= @post.member.age %>歳
      </div>
 
-     <% if @post.member.email == current_member.email %>
       <div class="mt-4 mb-4", style="display: flex;">
-        <%= link_to "編集する", edit_post_path(@post.id),class: 'btn btn-sm', style: "margin-right: 5px;" %>
-        <%= link_to "削除する", post_path(@post.id),class: 'btn btn-sm', style: "margin-left: 10px;", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <%= link_to "削除する", admin_post_path(@post.id),class: 'btn btn-sm',  method: :delete, "data-confirm" => "本当に削除しますか？" %>
       </div>
-     <% end %>
-
 
   </div>
  </div>

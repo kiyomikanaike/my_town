@@ -1,9 +1,5 @@
 class Admin::MembersController < ApplicationController
   before_action :authenticate_admin!
-  def history #会員の投稿履歴
-    @member = Member.find(params[:id])
-    @posts = @member.posts
-  end
 
   def show #会員詳細
     @member = Member.find(params[:id])
@@ -21,9 +17,7 @@ class Admin::MembersController < ApplicationController
       render :edit
     end
   end
-
-  def destroy #会員の投稿削除
-  end
+  
   private
   # ストロングパラメータ
   def member_params
