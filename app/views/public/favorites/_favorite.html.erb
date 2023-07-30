@@ -1,3 +1,4 @@
+ <% if member_signed_in? %>
   <% if !Favorite.exists?(member: current_member, post_id: @post.id) %>
     <%= link_to post_favorites_path(@post), method: :post, remote: true, class: "favorite-btn favorite-post text-black-50" do %>
       <i class="fa-regular fa-bookmark text-black-50"></i>
@@ -13,3 +14,9 @@
       <% end %>
     <% end %>
   <% end %>
+ <% else %>
+ <i class="fa-regular fa-bookmark text-black-50"></i>
+    <% if @post.favorites.length != 0 %>
+      <%= @post.favorites.length %>
+    <% end %>
+ <% end %>

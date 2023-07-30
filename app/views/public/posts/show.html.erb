@@ -38,7 +38,14 @@
        投稿者：<%= @post.member.residence %> <%= @post.member.age %>歳
      </div>
 
-     <% if @post.member.email == current_member.email %>
+     <% if member_signed_in? && @post.member.email == current_member.email %>
+      <div>
+       <% if @post.status == "非公開" %>
+         <div class= "text-black-50">非公開中</div>
+       <% else %>
+         <div class= "text-success">公開中</div>
+       <% end %>
+      </div>
       <div class="mt-4 mb-4", style="display: flex;">
         <%= link_to "編集する", edit_post_path(@post.id),class: 'btn btn-sm', style: "margin-right: 5px;" %>
         <%= link_to "削除する", post_path(@post.id),class: 'btn btn-sm', style: "margin-left: 10px;", method: :delete, "data-confirm" => "本当に削除しますか？" %>
