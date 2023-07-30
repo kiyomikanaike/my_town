@@ -11,6 +11,9 @@ class Admin::PostsController < ApplicationController
   end
 
   def destroy #投稿内容削除
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to admin_posts_history_path(@post.member.id)
   end
 
   private

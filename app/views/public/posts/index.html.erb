@@ -1,39 +1,32 @@
 <div class="container">
- <div class="row">
   <div class="mx-auto">
 
    <h4 class="mt-4 mb-4"><%= @title %>の穴場スポット</h4>
    <%= link_to_if @prefecture.present?, "人気順", posts_path(prefecture_id: @prefecture&.id, ranking: "favorites"), class: 'text-dark' %>
-   <%= link_to "投稿順",posts_path(prefecture_id: @prefecture.id), class: 'text-dark' %>
+   <%= link_to_if @prefecture.present?, "投稿順", posts_path(prefecture_id: @prefecture&.id), class: 'text-dark' %>
 
-   <div class="mt-4 mb-4">
+   <div class="mt-4 mb-4 row">
      <% @posts.each do |post| %>
-       <% if post.images.attached? %>
-
-         <% if @flag %>
-           <% post.images.each do |image| %>
-             <% if post.favorites.count !=0 %>
-               <%= link_to post_path(post.id) do %>
-               <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
-               <% end %>
-             <% end %>
-           <% end %>
-
-         <% else %>
-
-           <% post.images.each do |image| %>
-             <%= link_to post_path(post.id) do %>
-             <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
-           <% end %>
-         <% end %>
-
-       <% end %>
-
-
-      <% end %>
+        <% if post.images.attached? %>
+          <% post.images.each do |image| %>
+            <div class= "col-3">
+              <%= link_to post_path(post.id) do %>
+                <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+              <% end %>
+              <div>
+                スポット名：<%= post.spot_name %>
+              </div>
+              <div>
+                投稿者：<%= post.member.residence %> <%= post.member.age %>歳
+              </div>
+              <div class= "mb-4">
+                投稿月：<%= post.created_at.strftime('%Y年%m月') %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
      <% end %>
     </div>
 
   </div>
- </div>
 </div>

@@ -1,5 +1,4 @@
 <div class="container">
- <div class="row">
   <div class="mx-auto">
 
     <h5 class="text-center mt-4 mb-4">マイページ</h5>
@@ -10,41 +9,70 @@
      </div>
 
        <h6 class="mt-4 mb-2">投稿履歴</h6>
-         <% @posts.each do |post| %>
-           <% post.images.each do |image| %> <%# imageを4つまで表示 %>
-             <% @history_count += 1 %>
-             <% if @history_count <= 4 %>
-               <%= link_to post_path(post.id) do %>
-                 <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
-               <% end %>
-             <% end %>
-           <% end %>
-         <% end %>
+         <div class="row">
+          <% @posts.each do |post| %>
+            <% post.images.each do |image| %> <%# imageを4つまで表示 %>
+              <% @history_count += 1 %>
+              <% if @history_count <= 4 %>
+               <div class= "col-3">
+                <%= link_to post_path(post.id) do %>
+                  <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+                <% end %>
+                  <div>
+                    スポット名：<%= post.spot_name %>
+                  </div>
+                  <div>
+                    投稿月：<%= post.created_at.strftime('%Y年%m月') %>
+                  </div>
+                  <div>
+                    <% if post.status == true %>
+                 　　　<td class="text-black-50">非公開</td>
+                    <% else %>
+                 　　　<td class="text-success">公開</td>
+                    <% end %>
+                  </div>
+                 </div>
+              <% end %>
+            <% end %>
+          <% end %>
+         </div>
         <div class="text-right"><%= link_to "more ＞", my_posts_path, class: 'text-black-50' %></div>
 
 
        <h6 class="mt-4 mb-2">お気に入り</h6>
-       <div class="favorite">
-         <% if @favorite_list.present? %>
-           <% @favorite_list.each do |post| %>
-             <% post.images.each do |image| %>
-              <% @favorite_count += 1 %>
-              <% if @favorite_count <= 4 %>
-               <%= link_to post_path(post.id) do %>
-                <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
-               <% end %>
+         <div class="favorite">
+           <div class="row">
+              <% if @favorite_list.present? %>
+                <% @favorite_list.each do |post| %>
+                  <% post.images.each do |image| %>
+                   <% @favorite_count += 1 %>
+                   <% if @favorite_count <= 4 %>
+                    <div class= "col-3">
+                      <%= link_to post_path(post.id) do %>
+                       <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
+                      <% end %>
+                      <div>
+                        スポット名：<%= post.spot_name %>
+                      </div>
+                      <div>
+                        投稿者：<%= post.member.residence %> <%= post.member.age %>歳
+                      </div>
+                      <div>
+                        投稿月：<%= post.created_at.strftime('%Y年%m月') %>
+                      </div>
+                    </div>
+                   <% end %>
+                  <% end %>
+                <% end %>
               <% end %>
-             <% end %>
-           <% end %>
-         <% end %>
-         <div class="text-right"><%= link_to "more ＞", favorite_posts_path, class: 'text-black-50' %></div>
-        </div>
+            </div>
+          <div class="text-right"><%= link_to "more ＞", favorite_posts_path, class: 'text-black-50' %></div>
+         </div>
 
        <div class="mt-4 mb-4", style="display: flex;">
         <%= link_to "編集", members_information_edit_path,class: 'btn btn-sm', style: "margin-right: 5px;" %>
         <%= link_to "退会", members_confirm_withdraw_path,class: 'btn btn-sm', style: "margin-left: 10px;" %>
        </div>
 
-  </div>
  </div>
 </div>

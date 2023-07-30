@@ -20,10 +20,8 @@ class Public::PostsController < ApplicationController
     if params[:prefecture_id]
       @prefecture = Prefecture.find(params[:prefecture_id])
       @posts = @prefecture.posts.where(status: "公開") #公開内容のみ表示
-      @flag = false
-       if params[:ranking]
-        @posts = @posts.sort{|a,b| b.favorites.count <=> a.favorites.count}
-        @flag = true
+       if params[:ranking] #人気順表示、お気に入り０は除外
+        @posts = @posts.sort{|a,b| b.favorites.count <=> a.favorites.count}.select{|p| p.favorites.count != 0 }
        end
       @title = @prefecture.name
     else
@@ -38,9 +36,18 @@ class Public::PostsController < ApplicationController
 
   def search #絞り込み表示
     @posts = Post.where("spot_address LIKE ?", "%#{params[:q]}%")
-    @title = "#{params[:q]}" #検索入力した内容
-    @prefecture = @posts.first.prefecture
-    @title = params[:q]
+
+    if params[:q].empty?
+      @title = "全国"
+    else
+      @title = params[:q]  #検索入力した内容
+    end
+
+    if @posts.count == 0
+      flash.now[:error] = "結果が見つかりません"
+    else
+      @prefecture = @posts.first.prefecture
+    end
     render 'index'
   end
 

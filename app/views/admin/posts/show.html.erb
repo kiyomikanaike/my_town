@@ -2,21 +2,19 @@
  <div class="row">
   <div class="mx-auto">
 
-    <div class="row">
 　　 <div class="mr-3">
        <h5 class="mb-4 font-weight-bold">
         <%= @post.prefecture.name %>の<%= @post.spot_name %>
        </h5>
      </div>
 
-
-     <div>
-       <% if @post.images.attached? %>
-        <% @post.images.each do |image| %>
-         <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
-        <% end %>
+    <div>
+      <% if @post.images.attached? %>
+       <% @post.images.each do |image| %>
+        <%= image_tag image.variant(resize_to_limit: [100, 100]) %>
        <% end %>
-     </div>
+      <% end %>
+    </div>
 
      <div class="mt-4">
        住所：<%= @post.spot_postal_code %><%= @post.spot_address %>
