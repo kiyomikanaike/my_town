@@ -19,13 +19,13 @@ class Public::PostsController < ApplicationController
   def index #投稿一覧
     if params[:prefecture_id]
       @prefecture = Prefecture.find(params[:prefecture_id])
-      @posts = @prefecture.posts.where(status: "公開") #公開内容のみ表示
+      @posts = @prefecture.posts.where(status: "公開").order(created_at: :DESC) #公開内容のみ表示
        if params[:ranking] #人気順表示、お気に入り０は除外
         @posts = @posts.sort{|a,b| b.favorites.count <=> a.favorites.count}.select{|p| p.favorites.count != 0 }
        end
       @title = @prefecture.name
     else
-      @posts = Post.all#都道府県関係なしに全て表示したければこのif文を使用
+      @posts = Post.all.order(created_at: :DESC)
     end
   end
 
@@ -35,7 +35,7 @@ class Public::PostsController < ApplicationController
 
 
   def search #絞り込み表示
-    @posts = Post.where("spot_address LIKE ?", "%#{params[:q]}%")
+    @posts = Post.where("spot_address LIKE ?", "%#{params[:q]}%").order(created_at: :DESC)
 
     if params[:q].empty?
       @title = "全国"

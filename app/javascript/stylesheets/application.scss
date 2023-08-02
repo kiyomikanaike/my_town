@@ -1,15 +1,10 @@
 @use '~bootstrap/scss/bootstrap';
 
-// @font-face {
-//   font-family: "Tomoegozen";
-//   src: url('../fonts/tomoegozen.otf');
-//   font-style: normal;
-//   font-weight: normal;
-// }
 
-// .tomoegozen {
-//   font-family: 'Tomoegozen';
-// }
+
+.title {
+	
+}
 
 body {
   font-family: 'Hiragino Mincho Pro';
@@ -71,7 +66,7 @@ h5.text-center {
 
 
 // .container {
-//   background-image: url("/assets/green.jpg");
+//   background-image: url("/assets/background.jpg");
 // 　background-repeat: no-repeat; //画像を繰り返さない
 //   background-size: cover;　//縦横の比を保ったまま、要素にぴったりなサイズになる
 

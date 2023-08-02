@@ -47,7 +47,7 @@ class Public::MembersController < ApplicationController
   private
   # ストロングパラメータ
   def member_params
-    params.require(:member).permit(:birth_date,:encrypted_password,:residence)
+    params.require(:member).permit(:birth_date,:encrypted_password,:residence,:email)
   end
 
 end
