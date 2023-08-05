@@ -5,7 +5,7 @@ ja:
     attributes:
       member:
         email: メールアドレス
-        encrypted_password: パスワード
+        password: パスワード
         birth_date: 生年月日
         residence: お住まい
       post:

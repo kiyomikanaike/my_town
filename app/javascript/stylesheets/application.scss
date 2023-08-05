@@ -1,14 +1,56 @@
 @use '~bootstrap/scss/bootstrap';
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
+$delay: 0.015s;
+$duration: 0.6s;
+$easing: cubic-bezier(0.76, 0, 0.24, 1);
 
-.title {
-	
+.rolling-text{
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  $font-size: 38px;
+  font-size: $font-size;
+  line-height: $font-size * 2;
+  letter-spacing: $font-size / 2.5;
+  height: $font-size * 2;
+  text-decoration: none;
+  overflow: hidden;
+  color: #cccccc;
+
+  &:hover,
+  &.play{
+    .letter{
+      transform: translateY(-100%);
+    }
+  }
+
+  .block:last-child{
+    color: #8FBC8F;
+  }
+
+  .letter{
+    display: inline-block;
+    transition: transform $duration $easing;
+  }
 }
+
+@for $i from 0 through 20 {
+  .letter:nth-child(#{$i + 1}) {
+    transition-delay: $delay * $i;
+  }
+}
+
+// トップ画面タイトルのレスポンシブ対応
+.rolling-text span {
+  font-size: calc(15px + 2vw) !important; 
+}
+
 
 body {
   font-family: 'Hiragino Mincho Pro';
   color: #999999;
+  background-color: #f5f6f3;
 }
 
 img
