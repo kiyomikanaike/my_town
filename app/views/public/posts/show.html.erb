@@ -38,6 +38,10 @@
        投稿者：<%= @post.member.residence %> <%= @post.member.age %>歳
      </div>
 
+     <div>
+       投稿月：<%= @post.created_at.strftime('%Y年%m月') %>
+     </div>
+
      <% if member_signed_in? && @post.member.email == current_member.email %>
       <div>
        <% if @post.status == "非公開" %>

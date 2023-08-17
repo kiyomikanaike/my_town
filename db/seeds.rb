@@ -9,7 +9,7 @@ Region.create!([
   { id: 8, name: '九州' },
 ])
 
-Prefecture.create!([
+prefectures = Prefecture.create!([
   { region_id: 1, name: '北海道' },
   { region_id: 2, name: '青森県' },
   { region_id: 2, name: '岩手県' },
@@ -62,6 +62,22 @@ Prefecture.create!([
 Admin.create!(
   email:"kiyo@gmail.com",
   password:"e123456"
+  )
+
+members = Member.create!(
+  [
+    {email: 'shimane@example.com', birth_date: Time.parse("1960/01/01"), password: 'password',residence: '島根県' },
+    {email: 'hokkaido@example.com', birth_date: Time.parse("1985/01/01"), password: 'password',residence: '北海道'},
+    {email: 'okayama@example.com', birth_date: Time.parse("1993/01/01"), password: 'password',residence: '岡山県'}
+  ]
+)
+
+posts = Post.create!(
+  [
+    {spot_name: '宍道湖', status: 1 , images: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg"), spot_postal_code: '699-1234', spot_address: '島根県松江市1-1', point: '夕日の景色がとても素敵です。',  member_id: members[0].id, prefecture_id: prefectures[31].id },
+    {spot_name: '青い池', status: 1, images: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg"), spot_postal_code: '299-1234', spot_address: '北海道札幌市1-1', point: '綺麗な青色と澄んだ空気が最高です。',  member_id: members[1].id, prefecture_id: prefectures[0].id },
+    {spot_name: '牛窓テレモーク', status: 1,images: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg"), spot_postal_code: '399-1234', spot_address: '岡山県瀬戸内市1-1', point: 'アートやカフェを楽しめます。',  member_id: members[2].id, prefecture_id: prefectures[32].id}
+    ]
   )
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
