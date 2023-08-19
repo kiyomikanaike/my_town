@@ -1,3 +1,5 @@
+p "データを作成します"
+
 Admin.find_or_create_by!(email: "kiyo@gmail.com") do |admin|
   admin.password = "e123456"
 end
@@ -116,3 +118,5 @@ member3.posts.find_or_create_by!(spot_name: "牛窓テレモーク") do |post|
   post.point = "アートやカフェを楽しめます。"
   post.prefecture = okayama
 end
+
+p "データの作成に成功しました!"
